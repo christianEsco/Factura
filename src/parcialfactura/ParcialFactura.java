@@ -1,9 +1,17 @@
 package parcialfactura;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+=======
+/**
+ *
+ * @Christian Alvaro Esciobar Lacan ---- 2000224
+ * Juan Josue Chajil Navarro ****** 2000166
+ */
+>>>>>>> bc14e5021e8daa611d67ab45223159ca7a323722
 public class ParcialFactura {
     public static List<Encabezado> encabezadoo = new ArrayList();
     public static List<Descripcion> descripcion = new ArrayList();
