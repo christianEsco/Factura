@@ -1,19 +1,17 @@
 package parcialfactura;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 /**
  *
- * @Christian Alvaro Esciobar Lacan ---- 2000224
- * Juan Josue Chajil Navarro ****** 2000166
+ * @Christian Alvaro Esciobar Lacan ---- 2000224 Juan Josue Chajil Navarro
+ * ****** 2000166
  */
 public class ParcialFactura {
-    public static List<Encabezado> encabezadoo = new ArrayList();
-    public static List<Descripcion> descripcion = new ArrayList();
+
+    public static List<Encabezado> ListEncabezado = new ArrayList();
     public static Scanner in = new Scanner(System.in);
     public static int opcion1;
     public static int opcion;
@@ -21,7 +19,7 @@ public class ParcialFactura {
     public static void main(String[] args) {
 
         do {
-            
+
             Menu();
             switch (opcion) {
                 case 1:
@@ -40,15 +38,18 @@ public class ParcialFactura {
     }
 
     public static void Menu() {
+        System.out.println("--------------------------------");
         System.out.println("Menu");
         System.out.println("1. Agregar ");
         System.out.println("2. Modtrsr");
         System.out.println("3. Salir");
         opcion = in.nextInt();
+        System.out.println("\n");
     }
 
     public static void Encabezado() {
-        System.out.println("Ingrese los siguientes datos para registro");
+        //Ingreso de Factura encabezado
+        System.out.println("Ingrese los siguientes datos para guardar registro");
         System.out.println("Serie: ");
         int serie = in.nextInt();
         System.out.println("Numero de la factura: ");
@@ -61,41 +62,44 @@ public class ParcialFactura {
         String direccion = in.next();
         System.out.println("Ingresar Nit: ");
         int nit = in.nextInt();
-        encabezadoo.add(new Encabezado(serie,numero,fecha,nombre,direccion,nit));
+        List<Descripcion> Listdescripcion = new ArrayList();
         do {
-
-            Encabezado desc = new Encabezado();
-
+// Ingreso descripcion
+            System.out.println("\n");
+            System.out.println("\n");
             System.out.println("===============================================");
+            System.out.println("Ingrese Detalle de Factura");
             System.out.println("Cantidad de productos");
             int cantidad = in.nextInt();
             System.out.println("Descripción ");
             String descripcion1 = in.next();
             System.out.println("Valor del producto");
             double valor = in.nextDouble();
-            double total = cantidad * valor;
-            descripcion.add(new Descripcion(cantidad, descripcion1, valor, total));
-
-            System.out.println("1. Ingresar");
+            // Inicia el Array list dentro de Encabezado
+            Listdescripcion.add(new Descripcion(cantidad, descripcion1, valor));
+            System.out.println("\n-------------------------------------------------");
+            System.out.println("¿Decea ingresar un nuevo producto con descripcion?");
+            System.out.println("1. Ingresar nuevo producto");
             System.out.println("2.Salir");
             opcion1 = in.nextInt();
-
         } while (opcion1 != 2);
+        // Agrega un array list al encabezado junto con los detalles de productos
+        ListEncabezado.add(new Encabezado(serie, numero, fecha, nombre, direccion, nit, Listdescripcion));
     }
 
-    public static void  MostrarDatos() {
+    public static void MostrarDatos() {
+        System.out.println("\n");
+        System.out.println("\n");
         System.out.println("Datos a mostrar son:");
-        for (Encabezado encabezados : encabezadoo) {
-            System.out.println(encabezados.toString());
-
-            for (Descripcion descripciones : descripcion) {
-                System.out.println(descripciones.toString());
-            }
-            
+        System.out.println("-----------------------------------");
+        for (Encabezado encabezado : ListEncabezado) {
+            System.out.println("\n-------------------------------------");
+            System.out.println("\t\tFactura numero     " + encabezado.getNumero());
+            System.out.println("---------------------------------------");
+            System.out.println(encabezado.toString());
+            encabezado.mostrarDetalle();
         }
-        
 
     }
 
-        
-    }
+}

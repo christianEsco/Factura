@@ -1,36 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package parcialfactura;
 
-/**
- *
- * @author DELL
- */
 public class Descripcion {
      int Cantidad;
     String Descripcion;
     double valor;
-    double total;
 
-    public Descripcion() {
-    }
-
-    public Descripcion(int Cantidad, String Descripcion, double valor, double total) {
+    public Descripcion(int Cantidad, String Descripcion, double valor) {
         this.Cantidad = Cantidad;
         this.Descripcion = Descripcion;
-        this.valor = valor;
-        this.total = total;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(int total) {
-        this.total = total;
+        this.valor = valor;    
     }
 
     public int getCantidad() {
@@ -59,8 +38,9 @@ public class Descripcion {
     
     @Override
     public String toString (){
+        System.out.println("=========================================================");
         System.out.println(" Cantidad \t\t " + " Despcion \t\t" + " Valor " + " Total" ) ;
-        System.out.println(this.Cantidad +"\t\t"+ this.Descripcion +"\t\t"+ this.valor + "\t\t" +  this.total );
+        System.out.println(this.Cantidad +"\t\t"+ this.Descripcion +"\t\t"+ this.valor + "\t\t" );
         return " ";
         
     }

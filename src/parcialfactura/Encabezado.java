@@ -1,12 +1,10 @@
-
 package parcialfactura;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Encabezado {
-    Scanner in = new Scanner(System.in);
+
     int Serie;
     int Numero;
     String Fecha;
@@ -16,45 +14,21 @@ public class Encabezado {
     double Total;
     List<Descripcion> descripcion = new ArrayList();
 
-    public Encabezado(int Serie, int Numero, String Fecha, String Nombre, String Direccion, int Nit, double Total) {
+    public Encabezado(int Serie, int Numero, String Fecha, String Nombre, String Direccion, int Nit,
+            List<Descripcion> Listdescripcion) {
         this.Serie = Serie;
         this.Numero = Numero;
         this.Fecha = Fecha;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
         this.Nit = Nit;
-        this.Total = Total;
-    }
+        this.descripcion = Listdescripcion;
+        ActualizarTotal();
 
-   
+    }
 
     public Encabezado() {
 
-    }
-
-   
-
-    public List<Descripcion> getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(List<Descripcion> descripcion) {
-        Descripcion desc = new Descripcion();
-        this.descripcion = descripcion;
-    }
-    
-    
-    
-    
-    
-
-    public Encabezado(int Serie, int Numero, String Fecha, String Nombre, String Direccion, int Nit) {
-        this.Serie = Serie;
-        this.Numero = Numero;
-        this.Fecha = Fecha;
-        this.Nombre = Nombre;
-        this.Direccion = Direccion;
-        this.Nit = Nit;
     }
 
     public int getSerie() {
@@ -113,20 +87,47 @@ public class Encabezado {
         this.Total = Total;
     }
 
+    public List<Descripcion> getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(List<Descripcion> descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void ActualizarTotal() {
+        double valortotal = 0;
+        for (Descripcion descripcion1 : descripcion) {
+            valortotal = valortotal + (descripcion1.getValor() * descripcion1.getCantidad());
+        }
+        this.Total = valortotal;
+    }
+
+    public void mostrarDetalle() {
+        System.out.println("\n-------------------------------------");
+        System.out.println("\t\tDetalle");
+        System.out.println("---------------------------------------");
+        System.out.println("Cant.\t\tDesc.\t\tValor\t\tSubtotal");
+        for (Descripcion descripcion1 : descripcion) {
+            System.out.println(descripcion1.Cantidad + "\t\t"
+                    + descripcion1.getDescripcion() + "\t\t"
+                    + descripcion1.getValor() + "\t\t"
+                    + descripcion1.getValor() * descripcion1.getCantidad());
+        }
+
+    }
+
     @Override
     public String toString() {
-        System.out.println(" Serie\t  Numero\t  Fecha\t   Nombre\t Direccion\t  Total\t  descripcion");
-        System.out.println( Serie +"\t\t" +   Numero+"\t\t" +  Fecha+"\t\t" +  Nombre+"\t\t" +  Direccion+"\t\t" +  Nit+"\t\t" +  Total);
-        for (Descripcion descripcion1 : descripcion) {
-            System.out.println(descripcion1.toString());
-        }
+        System.out.println("Serie\t" + Serie);
+        System.out.println("Numero\t" + Numero);
+        System.out.println("Fecha\t" + Fecha);
+        System.out.println("Nombre\t" + Nombre);
+        System.out.println("Direccion\t" + Direccion);
+        System.out.println("Nit\t" + Nit);
+        System.out.println("Total\t" + Total);
         return " ";
 
-    
-    
-    } 
-    
-    
-    
-    
+    }
+
 }
